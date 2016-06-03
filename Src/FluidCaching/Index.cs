@@ -58,9 +58,11 @@ namespace FluidCaching
         public void Remove(TKey key)
         {
             INode<T> node = FindExistingNodeByKey(key);
-            node?.Remove();
-
-            lifespanManager.CheckValidity();
+            
+            if (node != null) {
+                node?.Remove();
+                lifespanManager.CheckValidity();
+            }
         }
 
         public long Count => index.Count;
